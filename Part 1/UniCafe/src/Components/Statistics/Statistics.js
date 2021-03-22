@@ -9,12 +9,16 @@ export const Statistics = ({ good, neutral, bad }) => {
       <h1>Feedback Statistics</h1>
       {total > 0 && (
         <div>
-          <Items name={"Good"} item={good} />
-          <Items name={"Neutral"} item={neutral} />
-          <Items name={"Bad"} item={bad} />
-          <Items name={"Total"} item={total} />
-          <Items name={"Average"} item={average} />
-          <Items name={"Positive"} item={positive} />
+          <table>
+            <tbody>
+              <Items name={"Good"} item={good} />
+              <Items name={"Neutral"} item={neutral} />
+              <Items name={"Bad"} item={bad} />
+              <Items name={"Total"} item={total} />
+              <Items name={"Average"} item={average} />
+              <Items name={"Positive"} item={positive} />
+            </tbody>
+          </table>
         </div>
       )}
       {total === 0 && (

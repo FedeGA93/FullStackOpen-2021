@@ -1,7 +1,7 @@
 export const Items = ({ name, item }) => {
   return (
-    <p>
-      {name}: {item}
-    </p>
+    <tr>
+      <td>{name}</td> : <td>{item}</td>
+    </tr>
   );
 };

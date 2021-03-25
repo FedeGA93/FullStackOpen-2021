@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Form } from "./Components/Form/Form";
 import { Title } from "./Components/Title/Title";
 import { Numbers } from "./Components/Persons/Numbers";
 import { SearchFilter } from "./Components/SearchFilter/SearchFilter";
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: "Arto Hellas", number: "040-123456" },
-    { name: "Ferrum", number: "39-44-5323523" },
-    { name: "Federico", number: "12-43-234345" },
-    { name: "Fede", number: "39-23-6423122" },
-  ]);
+  const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -43,7 +39,7 @@ const App = () => {
     }
   };
 
-  useEffect(() => {
+  const getContacts = () => {
     const results = [];
     persons.filter((person) => {
       const name = person.name;
@@ -52,8 +48,17 @@ const App = () => {
       }
     });
     setSearchList(results);
-  }, [searchTerm]);
-
+  };
+  const SetContacts = () => {
+    axios.get("http://localhost:3001/persons").then((response) => {
+      response.data.forEach((element) => {
+        persons.push(element);
+      });
+      setPersons(persons);
+    });
+  };
+  useEffect(SetContacts, [persons]);
+  useEffect(getContacts, [searchTerm]);
   return (
     <div>
       <Title text={"Phonebook"} />

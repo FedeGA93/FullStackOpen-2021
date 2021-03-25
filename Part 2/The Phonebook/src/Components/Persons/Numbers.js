@@ -1,7 +1,7 @@
 export const Numbers = ({ person }) => {
   return (
     <div>
-      {person.map(per => <p key={per.name}>{per.name} {per.number}</p>)}
+      {person.map(per => <p key={per.id}>{per.name} {per.number}</p>)}
     </div>
   );
 };
